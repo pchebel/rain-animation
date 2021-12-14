@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="rain"><h1>RAIN</h1></div>
+    <div class="follower"></div>
+    <div class="negativeFilter"></div>
+    <script src="./script/Drop.js"></script>
+
+    <script>
+      const body = document.querySelector("body");
+      const addRain = () => {
+        const drops = [];
+        const amount = 200;
+
+        for (let i = 0; i < amount; i++) {
+          drops.push(Drop.inside(body));
+        }
+
+        return drops;
+      };
+      const addFollower = () => {
+        const follower = document.querySelector(".follower");
+
+        const update = (event) => {
+          follower.style.top = event.clientY + "px";
+          follower.style.left = event.clientX + "px";
+        };
+
+        window.onmousemove = (event) => {
+          requestAnimationFrame(() => update(event));
+        };
+
+        return follower;
+      };
+      const drops = addRain();
+      const follower = addFollower();
+      const onWindowResize = () => {
+        const updateAll = () => drops.forEach((d) => d.update());
+        requestAnimationFrame(updateAll);
+      };
+
+      body.onmouseleave = () => follower.classList.add("idle");
+      body.onmouseenter = () => follower.classList.remove("idle");
+
+      window.onresize = onWindowResize;
+    </script>
+  </body>
+</html>

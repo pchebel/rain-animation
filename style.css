@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  cursor: none;
+}
+
+body {
+  background-color: black;
+  color: white;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+i.drop {
+  pointer-events: none;
+  position: absolute;
+  height: 200px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -webkit-animation: falling 5s infinite linear;
+          animation: falling 5s infinite linear;
+  top: 0px;
+}
+
+@-webkit-keyframes falling {
+  0% {
+    -webkit-transform: translateY(-200px) rotateZ(-20deg);
+            transform: translateY(-200px) rotateZ(-20deg);
+  }
+  100% {
+    -webkit-transform: translateY(calc(100vh + 200px)) rotateZ(0);
+            transform: translateY(calc(100vh + 200px)) rotateZ(0);
+  }
+}
+
+@keyframes falling {
+  0% {
+    -webkit-transform: translateY(-200px) rotateZ(-20deg);
+            transform: translateY(-200px) rotateZ(-20deg);
+  }
+  100% {
+    -webkit-transform: translateY(calc(100vh + 200px)) rotateZ(0);
+            transform: translateY(calc(100vh + 200px)) rotateZ(0);
+  }
+}
+
+.rain {
+  padding: 0 6rem;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: #fff;
+  font-family: "Bebas Neue";
+  font-size: 8rem;
+  letter-spacing: 1rem;
+  z-index: 0;
+  border: white 1px solid;
+  -webkit-transition: font-size 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: font-size 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.rain:hover ~ .follower {
+  -webkit-transform: translate(-50%, -50%) scale(2);
+          transform: translate(-50%, -50%) scale(2);
+}
+
+.follower {
+  pointer-events: none;
+  z-index: 1;
+  position: absolute;
+  background-color: white;
+  aspect-ratio: 1;
+  width: 10rem;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: top 0.05s linear, top 0.05s linear, -webkit-transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: top 0.05s linear, top 0.05s linear, -webkit-transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: top 0.05s linear, top 0.05s linear, transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: top 0.05s linear, top 0.05s linear, transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1), -webkit-transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.follower.idle {
+  -webkit-animation: idleAni 3s ease-out forwards;
+          animation: idleAni 3s ease-out forwards;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+}
+
+.negativeFilter {
+  z-index: 399;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50vh;
+  width: 100%;
+  background-color: #fff;
+  mix-blend-mode: difference;
+}
+
+@media screen and (max-width: 640px) {
+  .rain {
+    font-size: 5rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */
